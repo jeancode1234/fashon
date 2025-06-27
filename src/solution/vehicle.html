@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../output.css">
+    <title>Formulaire Multi-étapes</title>
+</head>
+<!-- <body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Demandez Wialon</h2>
+        <p class="text-gray-600 mb-4">Veuillez remplir un formulaire de demande pour commencer à utiliser Wialon.</p>
+        
+        <div id="step-1">
+            <h3 class="text-lg font-semibold mb-4">Quel type d'utilisateur êtes-vous ?*</h3>
+            <form>
+                <div class="space-y-4 mb-6">
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="userType" value="entreprise" class="form-radio text-blue-600" required>
+                        <span class="text-gray-700">Entreprise</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="userType" value="personnel" class="form-radio text-blue-600">
+                        <span class="text-gray-700">Personnel</span>
+                    </label>
+                </div>
+                <button type="button" onclick="validateStep(1)" class="w-full bg-blue-500 text-white py-2 rounded-md text-center font-medium hover:bg-blue-600">Suivant</button>
+            </form>
+        </div>
+        
+        <div id="step-2" class="hidden">
+            <h3 class="text-lg font-semibold mb-4">Pourquoi utilisez-vous ce site ?*</h3>
+            <form>
+                <div class="space-y-4 mb-6">
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="reason" value="gestion_flotte" class="form-radio text-blue-600" required>
+                        <span class="text-gray-700">Gestion de flotte</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="reason" value="surveillance" class="form-radio text-blue-600">
+                        <span class="text-gray-700">Surveillance des véhicules</span>
+                    </label>
+                </div>
+                <div class="flex justify-between">
+                    <button type="button" onclick="showPreviousStep(1)" class="bg-gray-400 text-white py-2 px-4 rounded-md hover:bg-gray-500">Retour</button>
+                    <button type="button" onclick="validateStep(2)" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Suivant</button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="step-3" class="hidden">
+            <h3 class="text-lg font-semibold mb-4">Informations personnelles</h3>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Nom*</label>
+                    <input type="text" id="name" class="w-full p-2 border rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Email*</label>
+                    <input type="email" id="email" class="w-full p-2 border rounded-md" required>
+                </div>
+                <div class="flex justify-between">
+                    <button type="button" onclick="showPreviousStep(2)" class="bg-gray-400 text-white py-2 px-4 rounded-md hover:bg-gray-500">Retour</button>
+                    <button type="button" onclick="validateStep(3)" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Suivant</button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="step-4" class="hidden">
+            <h3 class="text-lg font-semibold mb-4">Confirmation</h3>
+            <p class="text-gray-700 mb-4">Vérifiez vos informations avant de soumettre.</p>
+            <div class="flex justify-between">
+                <button type="button" onclick="showPreviousStep(3)" class="bg-gray-400 text-white py-2 px-4 rounded-md hover:bg-gray-500">Retour</button>
+                <button type="button" onclick="submitForm()" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Soumettre</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showNextStep(step) {
+            document.querySelectorAll('div[id^="step-"]').forEach(div => div.classList.add("hidden"));
+            document.getElementById(`step-${step}`).classList.remove("hidden");
+        }
+
+        function showPreviousStep(step) {
+            document.querySelectorAll('div[id^="step-"]').forEach(div => div.classList.add("hidden"));
+            document.getElementById(`step-${step}`).classList.remove("hidden");
+        }
+
+        function validateStep(step) {
+            let inputs = document.querySelectorAll(`#step-${step} input:required`);
+            let allFilled = true;
+            for (let input of inputs) {
+                if ((input.type === 'radio' && !document.querySelector(`input[name='${input.name}']:checked`)) || (input.type !== 'radio' && !input.value.trim())) {
+                    allFilled = false;
+                    break;
+                }
+            }
+            if (!allFilled) {
+                alert("Veuillez remplir tous les champs obligatoires avant de continuer.");
+                return;
+            }
+            showNextStep(step + 1);
+        }
+
+        function submitForm() {
+            alert("Formulaire soumis avec succès !");
+        }
+    </script>
+</body> -->
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <div id="step-1" class="step">
+            <h2 class="text-xl font-bold mb-4">Choisissez un type :</h2>
+            <div class="flex space-x-4">
+                <label class="flex items-center space-x-2">
+                    <input type="radio" name="userType" value="entreprise" checked onclick="toggleForm(true)" class="form-radio">
+                    <span>Entreprise</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="radio" name="userType" value="personnel" onclick="toggleForm(false)" class="form-radio">
+                    <span>Personnel</span>
+                </label>
+            </div>
+            <div id="enterprise-options" class="mt-4">
+                <label class="block text-gray-700">Pourquoi êtes-vous sur notre site ?</label>
+                <div class="mt-2 space-y-2">
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="reason" value="recherche-service" class="form-radio">
+                        <span>Recherche de service</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="reason" value="partenariat" class="form-radio">
+                        <span>Partenariat</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="reason" value="autre" class="form-radio">
+                        <span>Autre</span>
+                    </label>
+                </div>
+                <p id="error-reason" class="text-red-500 hidden">Veuillez sélectionner une option.</p>
+            </div>
+            <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg" onclick="nextStep(1)">Suivant</button>
+        </div>
+
+        <div id="step-2-personnel" class="step hidden">
+            <h2 class="text-xl font-bold mb-4">Informations Personnelles</h2>
+            <label class="block text-gray-700">Nom</label>
+            <input type="text" id="name" class="w-full p-2 border rounded-lg mt-1">
+            <p id="error-name" class="text-red-500 hidden">Le nom est requis.</p>
+
+            <label class="block text-gray-700 mt-2">Email</label>
+            <input type="text" id="email" class="w-full p-2 border rounded-lg mt-1">
+            <p id="error-email" class="text-red-500 hidden">L'email est requis.</p>
+
+            <button class="mt-4 w-full bg-green-500 text-white py-2 rounded-lg" onclick="submitForm()">Soumettre</button>
+        </div>
+
+        <div id="step-2-entreprise" class="step hidden">
+            <h2 class="text-xl font-bold mb-4">Informations Entreprise</h2>
+            <label class="block text-gray-700">Nom de l'Entreprise</label>
+            <input type="text" id="companyName" class="w-full p-2 border rounded-lg mt-1">
+            <p id="error-companyName" class="text-red-500 hidden">Le nom de l'entreprise est requis.</p>
+
+            <label class="block text-gray-700 mt-2">Secteur d'activité</label>
+            <input type="text" id="sector" class="w-full p-2 border rounded-lg mt-1">
+            <p id="error-sector" class="text-red-500 hidden">Ce champ est requis.</p>
+
+            <button class="mt-4 w-full bg-green-500 text-white py-2 rounded-lg" onclick="submitForm()">Soumettre</button>
+        </div>
+    </div>
+     
+     <div id="step-2-personnel" class="w-full bg-white rounded-2xl p-8 mx-8 space-y-4 step hidden">
+          <h4 class="text-xl text-gray-700">What do you want to track?*</h4>
+          <form action="#" method="post" class="w-full space-y-4">
+            <select name="option" id="" class="w-full outline-none border p-3 text-lg text-gray-800 rounded-xl bg-white focus:ring-1 focus:ring-offset-blue-500">
+                <option value="" selected disabled class="hidden">Select one of options</option>
+                <option value="1">My mobile phone</option>
+                <option value="2">My family members</option>
+                <option value="3">My family members' vehicle</option>
+                <option value="4">My pet(s)</option>
+                <option value="5">Other</option>
+            </select>
+            <div class="w-full flex items-center space-x-6">
+                 <div class="w-1/2 space-y-2">
+                       <label for="name" class="text-lg font-semibold text-gray-800">First name*</label>
+                       <input type="text" id="name" class="w-full p-3 border rounded-lg outline-none bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your first name">
+                 </div>
+                 <div class="w-1/2 space-y-2">
+                    <label for="name" class="text-lg text-gray-800 font-semibold">Last name*</label>
+                    <input type="text" id="name" class="w-full p-3 border rounded-lg outline-none bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your last name">
+              </div>
+            </div>
+            <div class="w-full flex items-center space-x-6">
+                <div class="w-1/2 space-y-2">
+                      <label for="name" class="text-lg text-gray-800 font-semibold">Email*</label>
+                      <input type="email" id="email" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your email">
+                </div>
+                <div class="w-1/2 space-y-2">
+                   <label for="phone" class="text-lg text-gray-800 font-semibold">Phone*</label>
+                   <input type="text" id="phone" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your phone">
+             </div>
+            </div>
+            <div class="w-full flex items-center space-x-6">
+                <div class="w-1/2 space-y-2">
+                      <label for="country" class="text-lg text-gray-800 font-semibold">Country*</label>
+                      <input type="email" id="email" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your email">
+                </div>
+                <div class="w-1/2 space-y-2">
+                   <label for="city" class="text-lg text-gray-800 font-semibold">City*</label>
+                   <input type="text" id="phone" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your phone">
+             </div>
+            </div>
+
+            <div class="w-full space-y-5 py-4">
+                 <div class="w-full flex space-x-4">
+                     <input type="checkbox" name="confidential" class="w-4 h-4" id="">
+                     <div class="flex flex-1">
+                        <a href="#" class="text-lg text-gray-700">I agree to personal data processing in accordance with Gurtam <span class="text-blue-600">Privacy Policy*</span> </a>
+                     </div>
+                 </div>
+                 <div class="w-full flex space-x-4 ">
+                    <input type="checkbox" name="confidential" class="w-4 h-4" id="">
+                    <div class="flex flex-1">
+                       <a href="#" class="text-lg text-gray-700">I understand that Wialon does not work directly with fleet owners, and I consent to my request and the associated data being shared with a Wialon partner.</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex justify-end pt-4">
+                <button onclick="submitForm()" class="px-8 py-3 rounded-xl bg-blue-400 text-white text-lg">Submit</button>
+          </div>
+          </form>
+     </div>
+
+     <div id="step-2-entreprise" class="w-full bg-white rounded-2xl p-8 mx-8 space-y-4 step hidden">
+        <h4 class="text-xl text-gray-700">What do you want to track?*</h4>
+        <form action="#" method="post" class="w-full space-y-4">
+          <select name="option" id="" class="w-full outline-none border p-3 text-lg text-gray-800 rounded-xl bg-white focus:ring-1 focus:ring-offset-blue-500">
+              <option value="" selected disabled class="hidden">Select one of options</option>
+              <option value="1">My mobile phone</option>
+              <option value="2">My family members</option>
+              <option value="3">My family members' vehicle</option>
+              <option value="4">My pet(s)</option>
+              <option value="5">Other</option>
+          </select>
+          <div class="w-full flex items-center space-x-6">
+               <div class="w-1/2 space-y-2">
+                     <label for="name" class="text-lg font-semibold text-gray-800">First name*</label>
+                     <input type="text" id="name" class="w-full p-3 border rounded-lg outline-none bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your first name">
+               </div>
+               <div class="w-1/2 space-y-2">
+                  <label for="name" class="text-lg text-gray-800 font-semibold">Last name*</label>
+                  <input type="text" id="name" class="w-full p-3 border rounded-lg outline-none bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your last name">
+            </div>
+          </div>
+          <div class="w-full flex items-center space-x-6">
+              <div class="w-1/2 space-y-2">
+                    <label for="name" class="text-lg text-gray-800 font-semibold">Email*</label>
+                    <input type="email" id="email" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your email">
+              </div>
+              <div class="w-1/2 space-y-2">
+                 <label for="phone" class="text-lg text-gray-800 font-semibold">Phone*</label>
+                 <input type="text" id="phone" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your phone">
+           </div>
+          </div>
+          <div class="w-full flex items-center space-x-6">
+              <div class="w-1/2 space-y-2">
+                    <label for="country" class="text-lg text-gray-800 font-semibold">Country*</label>
+                    <input type="email" id="email" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your email">
+              </div>
+              <div class="w-1/2 space-y-2">
+                 <label for="city" class="text-lg text-gray-800 font-semibold">City*</label>
+                 <input type="text" id="phone" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your phone">
+           </div>
+          </div>
+          
+            <div class="w-full space-y-2">
+                  <label for="country" class="text-lg text-gray-800 font-semibold">Compagny*</label>
+                  <input type="text" id="compagny" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your compagny name">
+            </div>
+            <div class="w-full space-y-2">
+                <label for="country" class="text-lg text-gray-800 font-semibold">Website*</label>
+                <input type="text" id="website" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Enter your compagny's website">
+          </div>
+          <div class="w-full space-y-2">
+            <label for="country" class="text-lg text-gray-800 font-semibold">Fleet size**</label>
+            <input type="number" id="website" class="outline-none w-full p-3 border rounded-lg bg-white focus:ring-1 focus:ring-offset-blue-500 placeholder:text-gray-500" required placeholder="Number of vehicles (numeric only)">
+         </div>
+          <div class="w-full space-y-5 py-4">
+               <div class="w-full flex space-x-4">
+                   <input type="checkbox" name="confidential" class="w-4 h-4" id="">
+                   <div class="flex flex-1">
+                      <a href="#" class="text-lg text-gray-700">I agree to personal data processing in accordance with Gurtam <span class="text-blue-600">Privacy Policy*</span> </a>
+                   </div>
+               </div>
+               <div class="w-full flex space-x-4 ">
+                  <input type="checkbox" name="confidential" class="w-4 h-4" id="">
+                  <div class="flex flex-1">
+                     <a href="#" class="text-lg text-gray-700">I understand that Wialon does not work directly with fleet owners, and I consent to my request and the associated data being shared with a Wialon partner.</a>
+                  </div>
+              </div>
+          </div>
+          <div class="w-full flex justify-end pt-4">
+              <button onclick="nextStep(1)" class="px-8 py-3 rounded-xl bg-blue-400 text-white text-lg">Next</button>
+        </div>
+        </form>
+     </div>
+    <script>
+        function toggleForm(isEnterprise) {
+            document.getElementById("enterprise-options").classList.toggle("hidden", !isEnterprise);
+        }
+
+        function nextStep(step) {
+            let valid = true;
+
+            if (step === 1 && document.querySelector('input[name="userType"]:checked').value === "entreprise") {
+                let selectedReason = document.querySelector('input[name="reason"]:checked');
+                if (!selectedReason) {
+                    document.getElementById("error-reason").classList.remove("hidden");
+                    valid = false;
+                } else {
+                    document.getElementById("error-reason").classList.add("hidden");
+                }
+            }
+
+            if (valid) {
+                document.getElementById("step-1").classList.add("hidden");
+                let userType = document.querySelector('input[name="userType"]:checked').value;
+                if (userType === "personnel") {
+                    document.getElementById("step-2-personnel").classList.remove("hidden");
+                } else {
+                    document.getElementById("step-2-entreprise").classList.remove("hidden");
+                }
+            }
+        }
+
+        function submitForm() {
+            alert("Formulaire soumis avec succès !");
+        }
+    </script>
+</body>
+</html> 
+
+
+
+
+
